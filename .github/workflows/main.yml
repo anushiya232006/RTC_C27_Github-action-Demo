@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 🔹 Checkout repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 🔹 Build step (optional)
+      - name: Build
+        run: echo "HTML Build Completed"
+
+      # 🔹 Upload artifact (your website files)
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      # 🔹 Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
